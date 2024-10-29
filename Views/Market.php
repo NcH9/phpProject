@@ -37,7 +37,19 @@ $productStorage->getProducts($title, $category, $price, $sorter);
 <h1 class="flex-center">Catalogue</h1>
 
 <!-- search and filters -->
-<div class="filterBubble">
+<div class="flex-center">
+    <button onclick="hideFilters()" class="searchBtn">Filters</button>
+</div>
+<script>
+    function hideFilters() {
+        if (document.getElementById('filterBubble').style.display != 'none') {
+            document.getElementById('filterBubble').style.display = 'none';
+        } else {
+            document.getElementById('filterBubble').style.display = 'block';
+        }
+    }
+</script>
+<div class="filterBubble" id="filterBubble">
 <div class="grid2">
 
     <div class="flex-center">
@@ -81,9 +93,9 @@ $productStorage->getProducts($title, $category, $price, $sorter);
                     value="
                     <? 
                     if(isset($price)) {
-                        echo $price != (string)0 ? htmlspecialchars($price) : 999999999999999999;
+                        print($price != (string)0 ? (float) htmlspecialchars($price) : (float) 999999999999999999);
                     } else {
-                        echo 999999999999999999;
+                        echo (float) 999999999999999999;
                     }
                     ?>"
                     />

@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="formForReg">
             <div class="grid2">
                 <h2 class="flex-center">Register</h2>
-                <form method="POST" class="formItself" enctype="multipart/form-data">
+                <form method="POST" class="formItself" enctype="multipart/form-data" id="uploadForm">
                     <div class="inputbubble">
 
                         <div class="grid2">
@@ -198,22 +198,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="inputbubble">
                         <div class="grid2">
 
-                            <div class="flex-center">
+                            <!-- <div class="flex-center">
                                 <span class="span2">Profile img</span>
                                 <input type="file" name="pfp"/>
-                            </div>
+                            </div> -->
 
                             <?
-                                if ($registerValidator->imgError != null) {
-                                    ?>
-                                        <div class="error">
-                                            <?
-                                                echo $registerValidator->imgError."<br>";
-                                            ?>
-                                        </div>
+                                // if ($registerValidator->imgError != null) {
+                                //     ?>
+                                <!-- //         <div class="error">
+                                //             <?
+                                //                 echo $registerValidator->imgError."<br>";
+                                //             ?>
+                                //         </div> -->
                                     <?
-                                }
+                                // }
                             ?>
+                            <div class="flex-center">
+                                <div class="grid2">
+                                    <div class="flex-center">
+                                        <span class="span2">Profile img</span>
+                                        <input type="file" name="pfp" id="fileInput"/>
+                                    </div>
+                                    <div class="flex-center"><span class="error" id="errorMessage"></span></div>
+                                </div>
+                            </div>
+                            <script>
+                                const fileInput = document.getElementById('fileInput');
+                                const uploadForm = document.getElementById('uploadForm');
+                                const errorMessage = document.getElementById('errorMessage');
+
+                                const maxFileSize = 1024 * 1024; // 1 MB
+
+                                uploadForm.addEventListener('submit', function (event) {
+                                    const file = fileInput.files[0];
+
+                                    if (file && file.size > maxFileSize) {
+                                        event.preventDefault(); // cancels form submit
+                                        errorMessage.textContent = 'Pfp is too big, maximum size: 1mb.';
+                                    } else {
+                                        errorMessage.textContent = '';
+                                    }
+                                });
+                            </script>
 
                         </div>
 

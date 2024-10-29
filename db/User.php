@@ -21,7 +21,9 @@ abstract class ProtoUser {
     }
 }
 class User extends ProtoUser {
-
+    public function __construct() {
+        parent::__construct();
+    }
     // fetch methods
     public function fetchUserByCredentials($username, $password) {
         $sql = "SELECT * FROM Users WHERE username = :username";
@@ -66,7 +68,7 @@ class User extends ProtoUser {
         }
     }
     public function fetchUserByUsername($username) {
-        $sql = "SELECT username, admin, pfp_path, token_expiration, email FROM Users WHERE username = :username";
+        $sql = "SELECT id, username, admin, pfp_path, token_expiration, email FROM Users WHERE username = :username";
         $stmt = $this->dbh->prepare($sql);
         $stmt->bindParam(':username', $username);
         $stmt->execute();
@@ -84,10 +86,11 @@ class User extends ProtoUser {
     // set methods
     public function setNewPfp($id, $imgPath) {
         try {
-            $sql = "UPDATE Users SET pfp_path = '{$imgPath}' WHERE id = '{$id}'";
+            $sql = "UPDATE Users SET pfp_path = :imgPath WHERE id = :id";
             $stmt = $this->dbh->prepare($sql);
+            $stmt->bindParam(':imgPath', $imgPath);
+            $stmt->bindParam(':id', $id);
             $stmt->execute();
-            echo "success!";
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

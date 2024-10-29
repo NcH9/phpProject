@@ -1,5 +1,6 @@
 <?
 require __DIR__."/scripts/sessionScripts.php";
+require_once __DIR__."/db/Hello.php";
 // var_dump($_COOKIE['rememberMe']);
 
 require __DIR__ . '/vendor/autoload.php';

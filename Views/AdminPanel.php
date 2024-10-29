@@ -1,5 +1,5 @@
 <?
-require __DIR__."/../scripts/sessionScripts.php";
+require_once __DIR__."/../scripts/sessionScripts.php";
 
     if (!isset($_SESSION['user_token']) || $_SESSION['admin'] == false) {
         header('Location: ./Error.php');
@@ -22,11 +22,11 @@ require __DIR__."/../scripts/sessionScripts.php";
 
     <?
 
-        require __DIR__ . "/../db/User.php";
+        require_once __DIR__ . "/../db/User.php";
         $user = new User();
         $user->fetchUsers();
         echo "<br>All users:";
-        foreach ($user->returnUsers() as $user) {
+        foreach ($user->getUsers() as $user) {
             ?>
                 <div class="microbubble">
                     <div class="grid4">
@@ -41,10 +41,10 @@ require __DIR__."/../scripts/sessionScripts.php";
                             <div><? echo "".$user['username']."<br>"; ?></div>
                         </div>
 
-                        <div class="gridDouble">
+                        <!-- <div class="gridDouble">
                             <div>password:</div>
-                            <div><? echo "".$user['password']."<br>"; ?></div>
-                        </div>
+                            <div><? //echo "".$user['password']."<br>"; ?></div>
+                        </div> -->
 
                         <div class="gridDouble">
                             <div>email: </div>

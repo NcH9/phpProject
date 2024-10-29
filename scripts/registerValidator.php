@@ -4,7 +4,8 @@ require_once __DIR__ . "/../db/User.php";
 class registerValidator {
     
     public $imgError, $usernameError, $passwordError, $emailError, $birthDateError;
-    private $image, $username, $password, $email, $birthDate, $admin;
+    public $image;
+    private $username, $password, $email, $birthDate, $admin;
     private function validateAll($username, $password, $email, $birthDate, $admin, $image):bool {
         $usernameBool = $this->validateUsername($username);
         $passwordBool = $this->validatePassword($password);
@@ -106,7 +107,7 @@ class registerValidator {
 
         return true;
     }
-    private function validateImage($image):bool {
+    public function validateImage($image):bool {
         // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // if (isset($_FILES['pfp'])) {
                 // $image = $_FILES['pfp'];
@@ -139,7 +140,7 @@ class registerValidator {
             // }
         // }
     }
-    private function addImage($image) {
+    public function addImage($image) {
         // $image = $_FILES['pfp'];
         if ($image !== null) {
             $targetFile = "../images/" . basename($image['name']);

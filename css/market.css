@@ -113,7 +113,8 @@ select {
     padding: 15px;
     background-color: white;
 }
-.filterBubble {
+#filterBubble {
     /* background-color: blue; */
     padding: 1px;
+    display: block;
 }
