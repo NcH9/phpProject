@@ -1,0 +1,21 @@
+{
+    "name": "root/backend",
+    "authors": [
+        {
+            "name": "Grebenyuk_Chernenko",
+            "email": "312chernenkods@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "wanfeiyy/dd": "^1.0",
+        "fakerphp/faker": "^1.9.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Palmo\\": ""
+        }
+    }
+}
