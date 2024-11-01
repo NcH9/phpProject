@@ -1,7 +1,6 @@
 <?
 require __DIR__."/scripts/sessionScripts.php";
 require_once __DIR__."/db/Hello.php";
-// var_dump($_COOKIE['rememberMe']);
 
 require __DIR__ . '/vendor/autoload.php';
 ?>
@@ -25,51 +24,10 @@ require __DIR__ . '/vendor/autoload.php';
             </div>
         </div>
     </div>
-
-    
-
-
-
-    <!-- <form method="post" action="Faker/db_seeder.php">
-        <div>
-            <span>
-                Addresses amount
-            </span>
-            <input type="number" min="0" name="addresses_amount">
-        </div>
-        <div>
-            <span>
-                Users amount
-            </span>
-            <input type="number" min="0" name="users_amount">
-        </div>
-        <div>
-            <span>
-                Categories amount
-            </span>
-            <input type="number" min="0" name="categories_amount">
-        </div>
-        <div>
-            <span>
-                Posts amount
-            </span>
-            <input type="number" min="0" name="posts_amount">
-        </div>
-        <button type="submit" class="btn btn-primary">Seed</button>
-    </form> -->
-    <!-- <a href="faker.php">Fill database</a> -->
-    
-    
-
 </body>
-<script>
-// window.addEventListener('beforeunload', function () {
-//     navigator.sendBeacon('./scripts/logout.php');
-// });
-</script>
+
 <style>
 body {
-    /* background: linear-gradient(0.25turn, rgba(0, 153, 255, 0.5), rgb(103, 149, 194)); */
     background-color: rgba(164, 202, 255, 0.5);
 }
 .navPanel {

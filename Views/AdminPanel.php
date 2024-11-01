@@ -23,6 +23,7 @@ require_once __DIR__."/../scripts/sessionScripts.php";
     <?
 
         require_once __DIR__ . "/../db/User.php";
+        use Palmo\db\User;
         $user = new User();
         $user->fetchUsers();
         echo "<br>All users:";
@@ -40,11 +41,6 @@ require_once __DIR__."/../scripts/sessionScripts.php";
                             <div>username: </div>
                             <div><? echo "".$user['username']."<br>"; ?></div>
                         </div>
-
-                        <!-- <div class="gridDouble">
-                            <div>password:</div>
-                            <div><? //echo "".$user['password']."<br>"; ?></div>
-                        </div> -->
 
                         <div class="gridDouble">
                             <div>email: </div>

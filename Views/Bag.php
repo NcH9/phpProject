@@ -43,7 +43,7 @@ require __DIR__ . "/../scripts/productInOutCart.php";
                                 <div class="minibubble">
                                     <span>Price: </span>
                                     <span>
-                                        <?php echo $product['price']; ?>
+                                        <?php echo round($product['price'], 2); ?>
                                     </span>
                                 </div>
                             </div>
@@ -86,12 +86,6 @@ require __DIR__ . "/../scripts/productInOutCart.php";
     ?>
 
 </body>
-<script>
-window.addEventListener('beforeunload', function () {
-    // Отправляем запрос к серверу при закрытии
-    navigator.sendBeacon('./scripts/logout.php');
-});
-</script>
 <style>
 .navPanel {
     margin: 15px;

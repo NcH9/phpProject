@@ -1,7 +1,8 @@
 <?php
-
-require_once __DIR__ . '/../Source/Db.php';
+namespace Palmo\db;
+require_once __DIR__.'/../Source/Db.php';
 use Palmo\Source\Db;
+use PDO, PDOException, DateTime;
 abstract class ProtoUser {
     protected $dbh;
     protected $users = [];
@@ -112,7 +113,6 @@ class User extends ProtoUser {
         $stmt->execute();
     }
     public function updateUserToken($userId, $token):bool {
-        // try {
             $sql = "UPDATE Users SET token = :token, token_expiration = :expiration WHERE id = :userId";
             $stmt = $this->dbh->prepare($sql);
             
@@ -132,11 +132,6 @@ class User extends ProtoUser {
     
                 return false;
             }
-        // } catch (PDOException $e) {
-        //     error_log("PDO exception while updating user token: " . $e->getMessage());
-
-        //     return false;
-        // }
     }
 
     // get methods
@@ -158,5 +153,3 @@ class User extends ProtoUser {
         return $stmt->fetch(PDO::FETCH_ASSOC) !== false;
     }
 }
-
-?>

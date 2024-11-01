@@ -1,6 +1,6 @@
 <?php
 namespace Palmo\Source;
-require('Config.php');
+require 'Config.php';
 
 use PDO;
 
