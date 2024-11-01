@@ -15,7 +15,7 @@ require __DIR__ . '/vendor/autoload.php';
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
 </head>
 <body>
-    <form method="post" action="Faker/db_seeder.php">
+    <form method="post" action="./db_seeder.php">
         <div>
             <span>
                 Categories amount
@@ -31,7 +31,7 @@ require __DIR__ . '/vendor/autoload.php';
         <button type="submit" class="btn btn-primary">Seed</button>
     </form>
 
-    <form method="post" action="Faker/db_seeder.php">
+    <form method="post" action="./db_seeder.php">
         <div>
             <span>
                 Users amount

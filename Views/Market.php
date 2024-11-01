@@ -1,6 +1,5 @@
 <?
 require __DIR__."/../scripts/sessionScripts.php";
-
 ?>
 <head>
     <link rel="stylesheet" href="../css/styles.css">
@@ -31,6 +30,7 @@ if (isset($_POST['searchBtn'])) {
 }
 
 $productStorage->getProducts($title, $category, $price, $sorter);
+
 ?>
 
 <div class="bgForShop">
@@ -138,6 +138,10 @@ $productStorage->getProducts($title, $category, $price, $sorter);
 </div>
 </div>
 
+
+<?
+if (!empty($productStorage->products)) {
+?>
 <!-- top pagination -->
 <? include('./marketPagination.php');?>
 
@@ -168,7 +172,7 @@ $productStorage->getProducts($title, $category, $price, $sorter);
                 <div class="minibubble">
                     <span>Price: </span>
                     <span>
-                        <?php echo $product['price']; ?>
+                        <?php echo round($product['price'], 2); ?>
                     </span>
                 </div>
             </div>
@@ -206,4 +210,13 @@ $productStorage->getProducts($title, $category, $price, $sorter);
 <? }?>
 
 <!-- bottom pagination -->
-<? include('./marketPagination.php'); ?>
+<? include('./marketPagination.php'); 
+} else {
+    ?>
+        <div class="flex-center">
+            <h1>No products were found!</h1>
+        </div>
+    <?
+}
+ 
+?>

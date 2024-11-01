@@ -1,10 +1,7 @@
 <?php
-require_once __DIR__ . '/../Source/Db.php';
+require_once __DIR__.'/../Source/Db.php';
 use Palmo\Source\Db;
 
-// $dbh = (new Db())->getHandler();
-// $products = $dbh->query("SELECT * FROM Products")->fetchAll(PDO::FETCH_ASSOC);
-// $categories = $dbh->query("SELECT * FROM Categories")->fetchAll(PDO::FETCH_ASSOC);
 abstract class ProtoProduct {
     protected $dbh;
     public $categories = [];
@@ -16,6 +13,7 @@ abstract class ProtoProduct {
         $this->categories = $this->dbh->query("SELECT * FROM Categories")->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
 class Product extends ProtoProduct {
     public $products = [];
     public $allProducts = [];
@@ -95,14 +93,20 @@ class Product extends ProtoProduct {
 
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute($params);
-        $this->products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $specificProduct = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $product = $this->products[0];
-        $filteredCategories = array_filter($this->categories, function($category) use ($product) {
-            return $category['id'] === $product['category_id'];
-        });
-        $category = array_shift($filteredCategories);
-        $this->products[0]['category'] = $category['name'];
+        if (!empty($specificProduct)) {
+            $specificProduct = $specificProduct[0];
+            $filteredCategories = array_filter($this->categories, function($category) use ($specificProduct) {
+                return $category['id'] === $specificProduct['category_id'];
+            });
+            $category = array_shift($filteredCategories);
+            $specificProduct['category'] = $category['name'];
+
+            return $specificProduct;
+        } else {
+            return false;
+        }
     }
     private function getCategory($categoryName) {
         $sql = "SELECT * FROM Categories WHERE name = :name";
@@ -119,5 +123,3 @@ class Product extends ProtoProduct {
         }
     }
 }
-
-?>

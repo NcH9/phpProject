@@ -13,7 +13,6 @@
             } else {
                 $admin = false;
             }
-            // $admin = true;
             if ($admin) {
                 ?>
                     <div><a class="navLink" href="<? echo '/Views/AdminPanel.php'?>">Admin Panel</a></div>
@@ -60,7 +59,6 @@
     box-shadow: 3px -3px 5px gray;
 }
 .navLink:hover {
-    /* background: linear-gradient(0.25turn, rgba(0, 54, 90, 0.5), rgb(50, 72, 95)); */
     color: white;
     opacity: 0.7;
     transition: 0.4s;

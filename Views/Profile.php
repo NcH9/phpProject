@@ -1,14 +1,16 @@
 <?
 require_once __DIR__."/../scripts/sessionScripts.php";
-require_once __DIR__."/../scripts/registerValidator.php";
 
 if (!isset($_SESSION['user_token'])) {
     header('Location: ../index.php');
     exit();
 }
 
-
+require_once __DIR__."/../scripts/Register/classes/registerValidator.php";
 require_once __DIR__."/../db/User.php";
+use Palmo\db\User;
+use Palmo\scripts\Register\classes\registerValidator;
+
 $userStorage = new User();
 $currentUser = $userStorage->fetchUserByUsername($_SESSION['username']);
 if (isset($_COOKIE['rememberMe'])) {
@@ -73,11 +75,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 
             </div>
-            <div class="margin">
-                <div class="flex-center">
-                    <img src="<? echo $currentUser['pfp_path'];?>" class="pfp"/>
-                </div>
-            </div>
+            <?
+                if (!empty($currentUser['pfp_path'])) {
+                    ?>
+                        <div class="margin">
+                            <div class="flex-center">
+                                <img src="<? echo $currentUser['pfp_path'];?>" class="pfp"/>
+                            </div>
+                        </div>
+                    <?
+                }
+            ?>
+            
         </div>
 
     </div>

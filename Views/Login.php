@@ -5,7 +5,8 @@ if (isset($_SESSION['user_token'])) {
     header('Location: ./Error.php');
     exit();
 }
-require __DIR__."/../scripts/loginValidator.php";
+require __DIR__."/../scripts/Login/classes/loginValidator.php";
+use Palmo\scripts\Login\classes\loginValidator;
 $loginValidator = new loginValidator();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['login'] ?? '';
@@ -124,10 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     place-items: center;
 }
 .inputbubble {
-    /* display: flex;
-    justify-content: center;
-    place-items: center; */
-
     margin: 15px;
     padding: 10px;
 
