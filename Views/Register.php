@@ -4,8 +4,12 @@ if (isset($_SESSION['user_token'])) {
     header('Location: ./Error.php');
     exit();
 }
-require __DIR__."/../scripts/registerValidator.php";
-require __DIR__."/../scripts/loginValidator.php";
+require __DIR__."/../scripts/Register/classes/registerValidator.php";
+require __DIR__."/../scripts/Login/classes/loginValidator.php";
+
+use Palmo\scripts\Register\classes\registerValidator;
+use Palmo\scripts\Login\classes\loginValidator;
+
 $registerValidator = new registerValidator();
 $loginValidator = new loginValidator();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -163,11 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="grid2">
                             <div class="flex-center">
                                 <span class="span1">Birthdate</span>
-                                <input type="date" name="birthdate"
-                                <? 
-                                    // echo isset($birthdate) ? $birthdate->format('Y-m-d') : "";
-                                ?>
-                                />
+                                <input type="date" name="birthdate"/>
                             </div>
                             <?
                                 if ($registerValidator->birthDateError != null) {
@@ -197,23 +197,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="inputbubble">
                         <div class="grid2">
-
-                            <!-- <div class="flex-center">
-                                <span class="span2">Profile img</span>
-                                <input type="file" name="pfp"/>
-                            </div> -->
-
-                            <?
-                                // if ($registerValidator->imgError != null) {
-                                //     ?>
-                                <!-- //         <div class="error">
-                                //             <?
-                                //                 echo $registerValidator->imgError."<br>";
-                                //             ?>
-                                //         </div> -->
-                                    <?
-                                // }
-                            ?>
                             <div class="flex-center">
                                 <div class="grid2">
                                     <div class="flex-center">
